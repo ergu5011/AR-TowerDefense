@@ -19,6 +19,9 @@ public class TapToPlace : MonoBehaviour
 
     private static List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
 
+    [SerializeField]
+    private LayerMask enemyLayer;
+
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
@@ -37,7 +40,7 @@ public class TapToPlace : MonoBehaviour
 
     private void Touch_onFingerDown(Finger obj)
     {
-
+        // Place tower
         if (raycastManager.Raycast(obj.screenPosition, hitResults, TrackableType.PlaneWithinBounds) && objectState == false)
         {
             Pose pose = hitResults[0].pose;
@@ -49,7 +52,12 @@ public class TapToPlace : MonoBehaviour
             objectToPlace.transform.position = pose.position;
             objectToPlace.transform.rotation = pose.rotation;
         }
-    }
+
+        if (Physics.Raycast(obj.screenPosition, out hitInfo))
+        {
+
+        }
+    }   
 
     public void stateToggle()
     {
