@@ -53,7 +53,11 @@ public class TapToPlace : MonoBehaviour
             objectToPlace.transform.rotation = pose.rotation;
         }
 
-        if (Physics.Raycast(obj.screenPosition, out hitInfo))
+        Vector3 screenPos = new Vector3(obj.screenPosition.x, obj.screenPosition.y, Camera.main.nearClipPlane);
+
+        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, enemyLayer))
         {
 
         }
