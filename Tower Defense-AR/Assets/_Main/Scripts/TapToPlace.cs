@@ -59,7 +59,7 @@ public class TapToPlace : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, enemyLayer))
         {
-
+            
         }
     }   
 

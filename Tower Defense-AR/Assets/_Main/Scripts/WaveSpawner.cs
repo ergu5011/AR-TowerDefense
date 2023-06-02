@@ -18,10 +18,14 @@ public class WaveSpawner : MonoBehaviour
     private float spawnInterval;
     private float spawnTimer;
 
+    private bool startWave;
+
     public List<GameObject> spawnedEnemies = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        startWave = true;
+
         GenerateWave();
     }
 
@@ -60,8 +64,10 @@ public class WaveSpawner : MonoBehaviour
 
         if (waveTimer <= 0 && spawnedEnemies.Count <= 0)
         {
-            currWave++;
-            GenerateWave();
+            //currWave++;
+            //GenerateWave();
+
+            //startWave = false;
         }
     }
 
@@ -72,6 +78,12 @@ public class WaveSpawner : MonoBehaviour
 
         spawnInterval = waveDuration / enemiesToSpawn.Count; // gives a fixed time between each enemies
         waveTimer = waveDuration; // wave duration is read only
+    }
+
+    public void NextWave()
+    {
+        currWave++;
+        GenerateWave();
     }
 
     public void GenerateEnemies()
