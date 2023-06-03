@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject target;
+    public GameObject target;
 
-    private float speed = 1;
+    private float speed = 3f;
 
     private void Start()
     {
-        target = GameObject.Find("Targer");
+        //target = GameObject.Find("Targer");
     }
 
     void Update()

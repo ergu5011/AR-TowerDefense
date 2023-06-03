@@ -18,14 +18,13 @@ public class WaveSpawner : MonoBehaviour
     private float spawnInterval;
     private float spawnTimer;
 
-    private bool startWave;
+    [SerializeField]
+    private GameObject tower;
 
     public List<GameObject> spawnedEnemies = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        startWave = true;
-
         GenerateWave();
     }
 
@@ -38,6 +37,7 @@ public class WaveSpawner : MonoBehaviour
             if (enemiesToSpawn.Count > 0)
             {
                 GameObject enemy = (GameObject)Instantiate(enemiesToSpawn[0], spawnLocation[spawnIndex].position, Quaternion.identity); // spawn first enemy in our list
+                enemy.GetComponent<EnemyScript>().target = tower; // Assigns the enemies their target
                 enemiesToSpawn.RemoveAt(0); // and remove it
                 spawnedEnemies.Add(enemy);
                 spawnTimer = spawnInterval;
@@ -66,8 +66,6 @@ public class WaveSpawner : MonoBehaviour
         {
             //currWave++;
             //GenerateWave();
-
-            //startWave = false;
         }
     }
 
