@@ -28,6 +28,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Defeat()
     {
+        Debug.Log("Skill Issue");
 
+        Time.timeScale = 0f;
     }
 }

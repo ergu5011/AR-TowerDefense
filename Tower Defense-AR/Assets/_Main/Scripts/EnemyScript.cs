@@ -9,12 +9,12 @@ public class EnemyScript : MonoBehaviour, IDamageable
     private float attackRange = 0.07f;
     private float distanceToTarget;
 
-    private float attackCooldown = 1.5f;
+    private float attackCooldown = 2f; // 1.5
     private bool isCooldown;
 
     private float speed = 0.1f;
     private float health = 1f;
-    private float damageDealt = 1f;
+    private float damageDealt = 25f;
 
     private Animator animator;
 
@@ -43,12 +43,14 @@ public class EnemyScript : MonoBehaviour, IDamageable
         }
         else
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+        //Debug.Log(isCooldown);
     }
 
     // Damage player
     private void EnemyAttack()
     {
-        if (isCooldown)
+        if (!isCooldown)
         {
             animator.SetTrigger("EnemyAttack");
             animator.SetBool("IsMoving", false);
