@@ -22,6 +22,8 @@ public class TapToPlace : MonoBehaviour
     [SerializeField]
     private LayerMask enemyLayer;
 
+    private float damageDealt = 1;
+
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
@@ -32,7 +34,6 @@ public class TapToPlace : MonoBehaviour
         newInputTouch.Touch.onFingerDown += Touch_onFingerDown;
     }
 
-
     private void OnDisable()
     {
         newInputTouch.Touch.onFingerDown -= Touch_onFingerDown;
@@ -40,7 +41,7 @@ public class TapToPlace : MonoBehaviour
 
     private void Touch_onFingerDown(Finger obj)
     {
-        // Place tower
+        // Place play area on plane
         if (raycastManager.Raycast(obj.screenPosition, hitResults, TrackableType.PlaneWithinBounds) && objectState == false)
         {
             Pose pose = hitResults[0].pose;
@@ -53,13 +54,21 @@ public class TapToPlace : MonoBehaviour
             objectToPlace.transform.rotation = pose.rotation;
         }
 
+        // Get player tap position
         Vector3 screenPos = new Vector3(obj.screenPosition.x, obj.screenPosition.y, Camera.main.nearClipPlane);
 
         Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
+        // Deal damage if target is enemy
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, enemyLayer))
         {
-            Destroy(hitInfo.transform.gameObject);
+            //Destroy(hitInfo.transform.gameObject);
+
+            IDamageable damageable = hitInfo.collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(damageDealt);
+            }
         }
     }   
 
