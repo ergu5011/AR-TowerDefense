@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour, IDamageable
@@ -18,6 +19,9 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [SerializeField]
     private Image fill;
+
+    [SerializeField]
+    private UnityEvent onDefeat;
 
     private void Start()
     {
@@ -47,7 +51,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Defeat()
     {
-        //Debug.Log("Skill Issue");
+        onDefeat.Invoke();
 
         Time.timeScale = 0f;
     }

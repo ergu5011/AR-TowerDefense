@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour
+public class SceneChange : MonoBehaviour
 {
-    public void LoadMarkeLessScene()
-    {
+	public void ChangeScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName);
+	}
 
-    }
-    
-    public void LoadMarkeBasedScene()
-    {
-
-    }
+	public void Exit()
+	{
+		Application.Quit();
+	}
 }

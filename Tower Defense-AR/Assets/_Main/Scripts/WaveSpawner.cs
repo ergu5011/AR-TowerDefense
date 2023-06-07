@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -21,8 +22,16 @@ public class WaveSpawner : MonoBehaviour
     private float spawnInterval;
     private float spawnTimer;
 
+    private bool waveHasPassed = false;
+
     [SerializeField]
     private GameObject tower;
+
+    [SerializeField]
+    private AudioSource audio;
+
+    [SerializeField]
+    private UnityEvent startButton;
 
     public List<GameObject> spawnedEnemies = new List<GameObject>();
     
@@ -57,6 +66,10 @@ public class WaveSpawner : MonoBehaviour
             else // if no enemies remain, end wave
             {
                 waveTimer = 0;
+
+                //audio.Stop();
+
+                //startButton.Invoke();
             }
         }
         else
@@ -65,13 +78,15 @@ public class WaveSpawner : MonoBehaviour
             waveTimer -= Time.fixedDeltaTime;
         }
 
-        /*
-        if (waveTimer <= 0 && spawnedEnemies.Count <= 0)
+        if (waveTimer <= 0 && spawnedEnemies.Count <= 0 && waveHasPassed == true)
         {
             //currWave++;
             //GenerateWave();
+
+            audio.Stop();
+
+            startButton.Invoke();
         }
-        */
     }
 
     public void GenerateWave()
@@ -88,6 +103,10 @@ public class WaveSpawner : MonoBehaviour
     {
         currWave++;
         GenerateWave();
+
+        audio.Play();
+
+        waveHasPassed = true;
     }
 
     public void GenerateEnemies()

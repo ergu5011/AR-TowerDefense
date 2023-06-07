@@ -6,6 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using newInputTouch = UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Events;
 
 public class TapToPlace : MonoBehaviour
 {
@@ -30,13 +31,15 @@ public class TapToPlace : MonoBehaviour
     [SerializeField]
     private GameObject attackPos;
 
+    [SerializeField]
     private AudioSource audio;
+
+    [SerializeField]
+    private UnityEvent confirmPlacement;
 
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
-
-        audio = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -56,12 +59,14 @@ public class TapToPlace : MonoBehaviour
         {
             Pose pose = hitResults[0].pose;
 
-            objectState = !objectState;
+            //objectState = !objectState;
 
-            objectToPlace.SetActive(objectState);
+            objectToPlace.SetActive(true);
 
             objectToPlace.transform.position = pose.position;
             objectToPlace.transform.rotation = pose.rotation;
+
+            confirmPlacement.Invoke();
         }
 
         // Get player tap position
@@ -72,8 +77,6 @@ public class TapToPlace : MonoBehaviour
         // Deal damage if target is enemy
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, enemyLayer))
         {
-            //Destroy(hitInfo.transform.gameObject);
-
             attackPos.transform.position = hitInfo.collider.transform.position;
             spellParticle.Play();
 
@@ -89,10 +92,7 @@ public class TapToPlace : MonoBehaviour
 
     public void stateToggle()
     {
-        if (objectState == true)
-        {
-            objectState = !objectState;
-            objectToPlace.SetActive(objectState);
-        }
+        objectState = !objectState;
+        //objectToPlace.SetActive(objectState);
     }
 }
