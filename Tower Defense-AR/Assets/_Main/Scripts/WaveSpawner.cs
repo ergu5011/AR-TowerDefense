@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI score;
 
     public List<Enemy> enemies = new List<Enemy>();
     public int currWave;
@@ -36,10 +39,11 @@ public class WaveSpawner : MonoBehaviour
             if (enemiesToSpawn.Count > 0)
             {
                 GameObject enemy = (GameObject)Instantiate(enemiesToSpawn[0], spawnLocation[spawnIndex].position, Quaternion.identity); // spawn first enemy in our list
-                //enemy.GetComponent<EnemyScript>().target = tower; // Assigns the enemies their target
                 enemiesToSpawn.RemoveAt(0); // and remove it
                 spawnedEnemies.Add(enemy);
                 spawnTimer = spawnInterval;
+
+                score.text = "Wave: " + currWave;
 
                 if (spawnIndex + 1 <= spawnLocation.Length - 1)
                 {
@@ -50,9 +54,9 @@ public class WaveSpawner : MonoBehaviour
                     spawnIndex = 0;
                 }
             }
-            else
+            else // if no enemies remain, end wave
             {
-                waveTimer = 0; // if no enemies remain, end wave
+                waveTimer = 0;
             }
         }
         else
@@ -61,11 +65,13 @@ public class WaveSpawner : MonoBehaviour
             waveTimer -= Time.fixedDeltaTime;
         }
 
+        /*
         if (waveTimer <= 0 && spawnedEnemies.Count <= 0)
         {
             //currWave++;
             //GenerateWave();
         }
+        */
     }
 
     public void GenerateWave()
@@ -117,7 +123,6 @@ public class WaveSpawner : MonoBehaviour
     }
 
 }
-
 [System.Serializable]
 public class Enemy
 {

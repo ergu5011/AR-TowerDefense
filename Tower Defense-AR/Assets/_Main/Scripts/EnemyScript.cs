@@ -17,7 +17,6 @@ public class EnemyScript : MonoBehaviour, IDamageable
     private float damageDealt = 25f;
 
     private Animator animator;
-
     private GameObject player;
 
     private void Start()
@@ -79,7 +78,11 @@ public class EnemyScript : MonoBehaviour, IDamageable
     // Does things when damaged
     private void Damaged()
     {
-        // do stuff here when damaged
-        Destroy(this);
+        if (GameObject.FindGameObjectWithTag("WaveSpawner") != null)
+        {
+            GameObject.FindGameObjectWithTag("WaveSpawner").GetComponent<WaveSpawner>().spawnedEnemies.Remove(gameObject);
+        }
+
+        Destroy(gameObject);
     }
 }

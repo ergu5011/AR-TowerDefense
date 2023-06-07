@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
@@ -8,6 +9,20 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private float currentHealth = 100f;
     private float damageTaken;
     private float score;
+
+    [SerializeField]
+    private Slider slider;
+
+    [SerializeField]
+    private Gradient gradient;
+
+    [SerializeField]
+    private Image fill;
+
+    private void Start()
+    {
+        fill.color = gradient.Evaluate(1f);
+    }
 
     // Interface for taking damage
     public void Damage(float damageAmount)
@@ -20,6 +35,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         currentHealth -= damageTaken;
 
+        slider.value = currentHealth;
+
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+
         if (currentHealth <= 0)
         {
             Defeat();
@@ -28,7 +47,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Defeat()
     {
-        Debug.Log("Skill Issue");
+        //Debug.Log("Skill Issue");
 
         Time.timeScale = 0f;
     }

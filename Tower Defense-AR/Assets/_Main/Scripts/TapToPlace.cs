@@ -20,13 +20,23 @@ public class TapToPlace : MonoBehaviour
     private static List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
 
     [SerializeField]
-    private LayerMask enemyLayer;
+    private LayerMask enemyLayer; // attack
 
-    private float damageDealt = 1;
+    private float damageDealt = 1; // attack
+
+    [SerializeField]
+    private ParticleSystem spellParticle;
+
+    [SerializeField]
+    private GameObject attackPos;
+
+    private AudioSource audio;
 
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
+
+        audio = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -63,6 +73,11 @@ public class TapToPlace : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, enemyLayer))
         {
             //Destroy(hitInfo.transform.gameObject);
+
+            attackPos.transform.position = hitInfo.collider.transform.position;
+            spellParticle.Play();
+
+            audio.PlayOneShot(audio.clip);
 
             IDamageable damageable = hitInfo.collider.GetComponent<IDamageable>();
             if (damageable != null)
