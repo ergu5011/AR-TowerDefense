@@ -6,24 +6,11 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using newInputTouch = UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.Events;
 
-public class TapToPlace : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
-    private GameObject objectToPlace;
-
-    private bool objectState = false;
-
-    [SerializeField]
-    private ARRaycastManager raycastManager;
-
-    private static List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
-
-    [SerializeField]
     private LayerMask enemyLayer; // attack
-
-    private float damageDealt = 1; // attack
 
     [SerializeField]
     private ParticleSystem spellParticle;
@@ -33,9 +20,6 @@ public class TapToPlace : MonoBehaviour
 
     [SerializeField]
     private AudioSource audio;
-
-    [SerializeField]
-    private UnityEvent confirmPlacement;
 
     private void Awake()
     {
@@ -54,21 +38,6 @@ public class TapToPlace : MonoBehaviour
 
     private void Touch_onFingerDown(Finger obj)
     {
-        // Place play area on plane
-        if (raycastManager.Raycast(obj.screenPosition, hitResults, TrackableType.PlaneWithinBounds) && objectState == false)
-        {
-            Pose pose = hitResults[0].pose;
-
-            //objectState = !objectState;
-
-            objectToPlace.SetActive(true);
-
-            objectToPlace.transform.position = pose.position;
-            objectToPlace.transform.rotation = pose.rotation;
-
-            confirmPlacement.Invoke();
-        }
-
         // Get player tap position
         Vector3 screenPos = new Vector3(obj.screenPosition.x, obj.screenPosition.y, Camera.main.nearClipPlane);
 
@@ -85,14 +54,8 @@ public class TapToPlace : MonoBehaviour
             IDamageable damageable = hitInfo.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damageDealt);
+                damageable.Damage(1);
             }
         }
-    }   
-
-    public void stateToggle()
-    {
-        objectState = !objectState;
-        //objectToPlace.SetActive(objectState);
     }
 }

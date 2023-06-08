@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acfb02d7086481459d11bc3f3a0d82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
 --- !u!1 &85220036
 GameObject:
   m_ObjectHideFlags: 0
@@ -12710,8 +12709,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1112458048}
-        m_TargetAssemblyTypeName: TapToPlace, Assembly-CSharp
+      - m_Target: {fileID: 1112458049}
+        m_TargetAssemblyTypeName: PayAreaPlacement, Assembly-CSharp
         m_MethodName: stateToggle
         m_Mode: 1
         m_Arguments:
@@ -29018,7 +29017,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1112458047}
-  - component: {fileID: 1112458048}
+  - component: {fileID: 1112458049}
+  - component: {fileID: 1112458050}
   m_Layer: 0
   m_Name: Interactor
   m_TagString: Untagged
@@ -29041,7 +29041,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1112458048
+--- !u!114 &1112458049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29050,17 +29050,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112458046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd43347cb882f54b9899f7babd83acc, type: 3}
+  m_Script: {fileID: 11500000, guid: c17014ee773b69d41a4e6839b5bf801c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPlace: {fileID: 1663662201}
   raycastManager: {fileID: 1462440579}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  spellParticle: {fileID: 1554464171}
-  attackPos: {fileID: 1209006808}
-  audio: {fileID: 1949708449}
   confirmPlacement:
     m_PersistentCalls:
       m_Calls:
@@ -29076,6 +29070,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1112458050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112458046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eeddaf94ac15c742a0e09eb8d5fe30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  spellParticle: {fileID: 1554464171}
+  attackPos: {fileID: 1209006808}
+  audio: {fileID: 1949708449}
 --- !u!1 &1172610027
 GameObject:
   m_ObjectHideFlags: 0
@@ -34875,7 +34887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 0}
+  m_PlanePrefab: {fileID: 3378671462567983032, guid: 158fb1c1279da1a41895c9858aabf124, type: 3}
   m_DetectionMode: 1
 --- !u!114 &1462440577
 MonoBehaviour:
