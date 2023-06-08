@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
-    private float maxHealth = 100f;
     private float currentHealth = 100f;
     private float damageTaken;
     private float score;
@@ -39,8 +38,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         currentHealth -= damageTaken;
 
+        // Updating healthbar UI
         slider.value = currentHealth;
-
         fill.color = gradient.Evaluate(slider.normalizedValue);
 
         if (currentHealth <= 0)

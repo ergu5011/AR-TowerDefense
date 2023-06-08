@@ -13,7 +13,6 @@ public class EnemyBasicBone : MonoBehaviour, IDamageable
     private bool isCooldown;
 
     private float speed = 0.1f;
-    private float health = 1f;
     private float damageDealt = 3f;
 
     private Animator animator;
