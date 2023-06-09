@@ -9,7 +9,7 @@ public class EnemyBasicBone : MonoBehaviour, IDamageable
     private float attackRange = 0.07f;
     private float distanceToTarget;
 
-    private float attackCooldown = 2f; // 1.5
+    private float attackCooldown = 1.5f;
     private bool isCooldown;
 
     private float speed = 0.1f;

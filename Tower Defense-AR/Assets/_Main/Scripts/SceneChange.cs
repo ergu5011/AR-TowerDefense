@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ExitGame : MonoBehaviour
+public class SceneChange : MonoBehaviour
 {
 	public void ChangeScene(string sceneName)
 	{
-		SceneManager.LoadScene(name);
+		SceneManager.LoadScene(sceneName);
 	}
 	public void Exit()
 	{

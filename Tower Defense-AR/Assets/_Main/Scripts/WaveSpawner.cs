@@ -66,10 +66,6 @@ public class WaveSpawner : MonoBehaviour
             else // if no enemies remain, end wave
             {
                 waveTimer = 0;
-
-                //audio.Stop();
-
-                //startButton.Invoke();
             }
         }
         else
@@ -80,9 +76,6 @@ public class WaveSpawner : MonoBehaviour
 
         if (waveTimer <= 0 && spawnedEnemies.Count <= 0 && waveHasPassed == true)
         {
-            //currWave++;
-            //GenerateWave();
-
             audio.Stop();
 
             startButton.Invoke();

@@ -10,7 +10,7 @@ using newInputTouch = UnityEngine.InputSystem.EnhancedTouch;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
-    private LayerMask enemyLayer; // attack
+    private LayerMask enemyLayer;
 
     [SerializeField]
     private ParticleSystem spellParticle;
