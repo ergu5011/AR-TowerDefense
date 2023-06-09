@@ -6416,7 +6416,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayScene-Markerless
+          m_StringArgument: PlayScene-Markerbased
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1047668096}
@@ -12923,7 +12923,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1112458049}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PayAreaPlacement, Assembly-CSharp
         m_MethodName: stateToggle
         m_Mode: 1
@@ -23208,7 +23208,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayScene-Markerbased
+          m_StringArgument: PlayScene-Markerless
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1047668096}
@@ -29658,7 +29658,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1112458047}
-  - component: {fileID: 1112458049}
   - component: {fileID: 1112458050}
   m_Layer: 0
   m_Name: Interactor
@@ -29682,35 +29681,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1112458049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112458046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17014ee773b69d41a4e6839b5bf801c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToPlace: {fileID: 1663662201}
-  raycastManager: {fileID: 1462440579}
-  confirmPlacement:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1598464484}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1112458050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30257,7 +30227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1316526369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35583,8 +35553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462440578}
   - component: {fileID: 1462440577}
-  - component: {fileID: 1462440576}
-  - component: {fileID: 1462440579}
+  - component: {fileID: 1462440580}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -35592,20 +35561,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1462440576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462440575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 0}
-  m_DetectionMode: 1
 --- !u!114 &1462440577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35635,7 +35590,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1462440579
+--- !u!114 &1462440580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35644,10 +35599,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462440575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 0}
+  m_SerializedLibrary: {fileID: 11400000, guid: 9335623b8a60fe140bf57d8d01153816, type: 2}
+  m_MaxNumberOfMovingImages: 1
+  m_TrackedImagePrefab: {fileID: 710077975130565789, guid: d86766bbef8f3a247923065bd4d4c126, type: 3}
 --- !u!1 &1543684271
 GameObject:
   m_ObjectHideFlags: 0
@@ -46206,12 +46163,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1663662202}
   m_Layer: 0
-  m_Name: PlayAreaV2
-  m_TagString: Untagged
+  m_Name: PlayAreaImageBased
+  m_TagString: PlayArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1663662202
 Transform:
   m_ObjectHideFlags: 0
@@ -46220,7 +46177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663662201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 900, z: 0}
   m_LocalScale: {x: 0.17488167, y: 0.17488167, z: 0.17488167}
   m_ConstrainProportionsScale: 0
   m_Children:
